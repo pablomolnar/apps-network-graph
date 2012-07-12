@@ -3,7 +3,7 @@ body {
   height: 680px;
   width: 960px;
   margin: 50px 160px 80px 160px;
-  overflow: hidden;
+  /*overflow: hidden;*/
   position: relative;
 }
 
