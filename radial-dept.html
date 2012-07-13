@@ -2,20 +2,32 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <link type="text/css" rel="stylesheet" href="files/bootstrap/css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="files/style.css"/>
   </head>
-  <body>
-
-    <div style="position:absolute;top:-20px;display:inline">
-        <div class="legend in" >in</div>
-        <div class="legend out">out</div>
+  <body>    
+    <div class="title-box">
+      <h2>Depts Networking</h2>
     </div>
-    
-    <h2>
-      Depts Networking
-    </h2>
 
-    <div style="position:absolute;bottom:0;font-size:18px;">tension: <input style="position:relative;top:3px;" type="range" min="0" max="100" value="85"></div>
+    <div class="ui-box">
+      <div class="btn-toolbar">
+        <div class="btn-group">
+          <button class="btn" onclick="">Apps</button>
+          <button class="btn">Depts</button>
+          <button class="btn">Scopes</button>
+        </div>
+        <div class="btn-group">
+          <button class="btn">Items</button>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-danger" style="width:50px;">in</button>
+          <button class="btn btn-success"  style="width:50px;">out</button>
+        </div>
+      </div>
+      <div class="tension">Tension: <input type="range" min="0" max="100" value="85"></div>
+    </div>
+
     <script type="text/javascript" src="files/d3.js"></script>
     <script type="text/javascript" src="files/d3.layout.js"></script>
     <script type="text/javascript" src="files/packages.js"></script>
@@ -42,9 +54,7 @@ var line = d3.svg.line.radial()
     .radius(function(d) { return d.y; })
     .angle(function(d) { return d.x / 180 * Math.PI; });
 
-var div = d3.select("body").insert("div", "h2")
-    .style("top", "-80px")
-    .style("left", "-160px")
+var div = d3.select("body").insert("div", ":first-child")    
     .style("width", w + "px")
     .style("height", w + "px")
     .style("position", "absolute");
