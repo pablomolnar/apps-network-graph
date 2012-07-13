@@ -7,14 +7,7 @@ body {
   position: relative;
 }
 
-a:link, a:visited {
-  color: #777;
-  text-decoration: none;
-}
 
-a:hover {
-  color: #666;
-}
 
 blockquote {
   margin: 0;
