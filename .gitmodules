@@ -1,0 +1,3 @@
+[submodule "apps-network-graph"]
+	path = apps-network-graph
+	url = git://github.com/pablomolnar/apps-network-graph.git

@@ -1,0 +1,184 @@
+body {
+  font: 300 36px "Helvetica Neue";
+  /*height: 680px;
+  width: 960px;
+  margin: 50px 160px 80px 160px;
+  /*overflow: hidden;*/
+  position: relative;
+}
+
+
+
+blockquote {
+  margin: 0;
+}
+
+blockquote:before {
+  content: "â€œ";
+  position: absolute;
+  left: -.4em;
+}
+
+blockquote:after {
+  content: "â€";
+  position: absolute;
+}
+
+body > ul {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 64px;
+}
+
+h1, h2, h3 {
+  font-weight: inherit;
+  margin: 0;
+}
+
+.title-box {
+  position: absolute;
+  right: 50px;
+  top: 30px;
+}
+
+.title-box h2 {
+  text-align: right;
+  font-size: 24px;
+}
+
+.ui-box {
+  position: absolute;
+  left: 20px;
+}
+
+.ui-box .tension {
+  font-size: 16px;
+}
+
+.ui-box .tension input {
+  width: 175px;
+}
+
+/*
+h2, h3 {
+  text-align: right;
+  font-size: inherit;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+h2 {
+  font-size: 24px;
+  position: absolute;
+}
+*/
+h3 {
+  bottom: -20px;
+  font-size: 18px;
+}
+
+.invert {
+  background: #1f1f1f;
+  color: #dcdccc;
+}
+
+.invert h2, .invert h3 {
+  color: #7f9f7f;
+}
+
+.string, .regexp {
+  color: #f39;
+}
+
+.keyword {
+  color: #00c;
+}
+
+.comment {
+  color: #777;
+  font-style: oblique;
+}
+
+.number {
+  color: #369;
+}
+
+.class, .special {
+  color: #1181B8;
+}
+
+path.arc {
+  cursor: move;
+  fill: #fff;
+}
+
+.node {
+  /* font-size: 23px; */
+  font-size: 18px;
+}
+
+.node:hover {
+  /*fill: #1f77b4;*/
+  font-weight: bold;
+}
+
+.link {
+  fill: none;
+  stroke: #1f77b4; /* blue */
+  stroke-opacity: .4;
+  pointer-events: none;
+}
+
+.link.source, .link.target {
+  stroke-opacity: 1;
+  stroke-width: 2px;
+}
+
+.node.source {
+  fill: #0A8A0A; /* green */
+}
+
+.node.target {
+  fill: #d62728 !important; /* red */
+}
+
+.link.source {
+  stroke: #F50000; /* red */
+}
+
+.link.target {
+  stroke: #0A8A0A; /* green */
+  
+}
+
+.legend {
+  width: 60px;
+  font-size: 20px;
+  font-weight: bolder;
+  border: 1px dashed black;
+  margin: 10px 0px 0px 0px;
+  padding: 6px 0px;
+  
+  text-align: center;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.legend.in {
+  background-color: #3CBC3C;
+}
+
+.legend.out {
+  background-color: #FF3C3C;
+}
+
+body > svg {
+  position: absolute;
+  top: -80px;
+  left: -160px;
+}
