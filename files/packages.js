@@ -160,13 +160,17 @@ function mouseup() {
 }
 
 function mouseover(d) {
-  svg.selectAll("path.link.target-" + d.key)
-      .classed("target", true)
-      .each(updateNodes("source", true));
+  if($("#btn-in").hasClass('on')) {
+    svg.selectAll("path.link.target-" + d.key)
+        .classed("target", true)
+        .each(updateNodes("source", true));
+  }
 
-  svg.selectAll("path.link.source-" + d.key)
-      .classed("source", true)
-      .each(updateNodes("target", true));
+  if($("#btn-out").hasClass('on')) {
+    svg.selectAll("path.link.source-" + d.key)
+        .classed("source", true)
+        .each(updateNodes("target", true));
+  }
 }
 
 function mouseout(d) {
@@ -197,3 +201,16 @@ function cross(a, b) {
 function dot(a, b) {
   return a[0] * b[0] + a[1] * b[1];
 }
+
+// UI
+
+$("#btn-in").click(function() {
+  $(this).toggleClass('btn-success');
+  $(this).toggleClass('on');
+});
+
+$("#btn-out").click(function() {
+  $(this).toggleClass('btn-danger');
+  $(this).toggleClass('on');
+});
+      
