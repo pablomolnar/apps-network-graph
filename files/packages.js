@@ -48,7 +48,7 @@
   };
 })();
 
-var w = 1280,
+var w = document.body.offsetWidth,
     h = 800,
     rx = w / 2,
     ry = h / 2,
