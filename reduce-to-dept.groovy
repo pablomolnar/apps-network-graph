@@ -1,6 +1,6 @@
 @Grab(group='net.sf.json-lib', module='json-lib', version='2.4', classifier='jdk15')
 
-	def map = [:]
+def map = [:]
 
 def file = new File("./csv/raw.csv").eachLine { line ->
 	def terms = line.split(',')
@@ -12,19 +12,14 @@ def file = new File("./csv/raw.csv").eachLine { line ->
 	if(from.size() == 0 || to.size() == 0) return
 
 	def A
-	if(from.size() >= 2){
-		A = from[0]+'-'+from[1]
-	} else {
+	if(from.size() >= 1){
 		A = from[0]
 	}
 
 	def B
-	if(to.size() >= 2){
-		B = to[0]+'-'+to[1]
-	} else {
+	if(to.size() >= 1){
 		B = to[0]
 	}
-
 
 	def key = "$A,$B"
 	def count = map.get(key)?:0
@@ -32,7 +27,7 @@ def file = new File("./csv/raw.csv").eachLine { line ->
 	map.put(key, count + (terms[2] as Integer))
 }
 
-def out = new File('./csv/app.csv')
+def out = new File('./csv/dept.csv')
 out.write('')
 
 map.each{ k,v ->

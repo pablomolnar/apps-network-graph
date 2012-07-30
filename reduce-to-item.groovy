@@ -1,6 +1,6 @@
 @Grab(group='net.sf.json-lib', module='json-lib', version='2.4', classifier='jdk15')
 
-	def map = [:]
+def map = [:]
 
 def file = new File("./csv/raw.csv").eachLine { line ->
 	def terms = line.split(',')
@@ -32,11 +32,15 @@ def file = new File("./csv/raw.csv").eachLine { line ->
 	map.put(key, count + (terms[2] as Integer))
 }
 
-def out = new File('./csv/app.csv')
+def out = new File('./csv/items.csv')
 out.write('')
 
 map.each{ k,v ->
-	println k
 	def link = k.split(',')
-	out << "${link[0]},${link[1]},$v\n"
+
+	if(link[0].startsWith('items-') || link[1].startsWith('items-')) {
+		def line = "${link[0]},${link[1]},$v\n"	
+		println line	
+		out <<  line
+	}
 }

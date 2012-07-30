@@ -42,11 +42,15 @@ h1, h2, h3 {
   position: absolute;
   right: 50px;
   top: 30px;
+  text-align: right;
 }
 
-.title-box h2 {
-  text-align: right;
-  font-size: 24px;
+.title-box h3 {
+  display: inline-block;
+}
+
+.title-box .throughtput {
+  display: none;
 }
 
 .ui-box {

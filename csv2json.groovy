@@ -8,23 +8,26 @@ if(args.size() == 0 || !args[0]) {
 
 def file = new File("./csv/${args[0]}.csv").eachLine { line ->
 	def terms = line.split(',')
-	def size = 0
-	if(terms.size() == 3) terms[2] as Integer
+	def count = 0
+	if(terms.size() == 3) count = terms[2] as Integer
 	else if(terms.size() != 2) return
 
 	def from = map.get(terms[0])
-
 	if(!from) {
-	  from = [name: terms[0], size: size, imports: []]
+	  from = [name: terms[0], out: 0, in: 0,  imports: []]
 	  map.put(terms[0], from)
 	}
 
 	from.imports << terms[1]
+	from.out += count
 
-
-	if(!map.get(terms[1])) {
-		map.put(terms[1], [name: terms[1], size: 0, imports: []])	
+	def to = map.get(terms[1])
+	if(!to) {
+		to = [name: terms[1], out: 0, in: 0,  imports: []]
+	  	map.put(terms[1], to)
 	}
+
+	to.in += count
 }
 
-new File("./json/${args[0]}.json").write(net.sf.json.JSONArray.fromObject(map.values() as List).toString())
+new File("./json/${args[0]}.json").write(net.sf.json.JSONObject.fromObject(map).toString())

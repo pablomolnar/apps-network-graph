@@ -1,8 +1,7 @@
 (function() {
   packages = {
 
-    // Lazily construct the package hierarchy from class names.
-    root: function(classes) {
+    root: function(apps) {
       var map = {};
 
       function find(name, data) {
@@ -10,17 +9,22 @@
         if (!node) {
           node = map[name] = data || {name: name, children: []};
           if (name.length) {
-            node.parent = find(name.substring(0, i = name.lastIndexOf(".")));
+            
+            var parent = find(name.substring(0, i = name.lastIndexOf(".")));
+            //console.log(parent.children);
+            node.parent = parent;
             node.parent.children.push(node);
             node.key = name.substring(i + 1);
           }
         }
+
         return node;
       }
 
-      classes.forEach(function(d) {
-        find(d.name, d);
-      });
+      for (var key in apps) { 
+        find(key, apps[key]);
+      }
+      
 
       return map[""];
     },
@@ -48,12 +52,18 @@
   };
 })();
 
+Number.prototype.formatMoney = function(c, d, t){
+var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "," : d, t = t == undefined ? "." : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+ };
+
 var w = document.body.offsetWidth,
     h = 800,
     rx = w / 2,
     ry = h / 2,
     m0,
-    rotate = 0;
+    rotate = 0,
+    apps;
 
 var splines = [];
 
@@ -85,8 +95,9 @@ svg.append("svg:path")
     .attr("d", d3.svg.arc().outerRadius(ry - 120).innerRadius(0).startAngle(0).endAngle(2 * Math.PI))
     .on("mousedown", mousedown);
 
-d3.json(json, function(classes) {
-  var nodes = cluster.nodes(packages.root(classes)),
+d3.json(json, function(_apps) {
+  apps = _apps;
+  var nodes = cluster.nodes(packages.root(apps)),
       links = packages.imports(nodes),
       splines = bundle(links);
 
@@ -160,6 +171,10 @@ function mouseup() {
 }
 
 function mouseover(d) {
+  $('.throughtput').css('display','inline');
+  $('#throughtput-in h3').text(apps[d.key].in.formatMoney(0, '.', ','));
+  $('#throughtput-out h3').text(apps[d.key].out.formatMoney(0, '.', ','));
+
   if($("#btn-in").hasClass('on')) {
     svg.selectAll("path.link.target-" + d.key)
         .classed("target", true)
@@ -213,4 +228,6 @@ $("#btn-out").click(function() {
   $(this).toggleClass('btn-danger');
   $(this).toggleClass('on');
 });
-      
+
+$("#throughtput-in").children().tooltip({title:'Incoming throughtput'});
+$("#throughtput-out").children().tooltip({title:'Outcoming throughtput'});

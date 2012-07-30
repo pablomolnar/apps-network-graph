@@ -7,13 +7,23 @@
     <link type="text/css" rel="stylesheet" href="files/style.css"/>
     <style type="text/css">
       .node {
-        font-size: 14px;
+        font-size: 16px;
       }
     </style>
   </head>
   <body>    
     <div class="title-box">
-      <h2>Items Networking</h2>
+      <span>Items Networking</span>
+      <div class="throughtput">
+        <div id="throughtput-in">
+          <h3></h3>
+          <img src="files/light-green.png">
+        </div>
+        <div id="throughtput-out">
+          <h3></h3>
+          <img src="files/light-red.png">
+        </div>
+      </div>
     </div>
 
     <div class="ui-box">
@@ -32,13 +42,16 @@
         </div>
       </div>
       <div class="tension">Tension: <input type="range" min="0" max="100" value="85"></div>
+      
     </div>
 
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
     <script type="text/javascript"> var json = "json/items.json" </script>
     <script type="text/javascript" src="files/d3.js"></script>
     <script type="text/javascript" src="files/d3.layout.js"></script>
-    <script type="text/javascript" src="files/packages.js"></script>
+    <script type="text/javascript" src="files/main.js"></script>
 
   </body>
 </html>
