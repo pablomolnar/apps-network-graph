@@ -33,6 +33,10 @@ cleanRegex << '-others'
 cleanRegex << '-publicml.:-public'
 cleanRegex << '-publicresto.:-public'
 
+def filter = args[0]
+def fileName = filter ? "./csv/${filter}.csv" : './csv/scope.csv'
+println "Filename: " + fileName
+
 def file = new File("./csv/raw.csv").eachLine { line ->
 	def terms = line.split(',')
 	if(terms.size() != 3 || !terms[0] || !terms[1]) return
@@ -51,13 +55,15 @@ def file = new File("./csv/raw.csv").eachLine { line ->
 		key.contains('alpha') || 
 		key.contains('beta')) return
 
+	if(filter && !terms[0].startsWith(filter) && !terms[1].startsWith(filter)) return
+
 
 	def count = map.get(key)?:0
 	
 	map.put(key, count + (terms[2] as Integer))
 }
 
-def out = new File('./csv/scope.csv')
+def out = new File(fileName)
 out.write('')
 
 map.each{ k,v ->
