@@ -33,7 +33,7 @@ cleanRegex << '-others'
 cleanRegex << '-publicml.:-public'
 cleanRegex << '-publicresto.:-public'
 
-def filter = args[0]
+def filter = args.size() ? args[0] : null
 def fileName = filter ? "./csv/${filter}.csv" : './csv/scope.csv'
 println "Filename: " + fileName
 
@@ -68,8 +68,9 @@ out.write('')
 
 map.each{ k,v ->
 	def link = k.split(',')
+	if(link.size() < 2) return
 	def line = "${link[0]},${link[1]},$v\n"
 
-	println line	
+	print line	
 	out <<  line
 }
